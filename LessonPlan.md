@@ -73,6 +73,7 @@ In this activity, students will research various C2 frameworks and document simi
 
 Share the following link with students: https://www.thec2matrix.com/matrix
 
+[Student Do Solved Link](01-C2Research-Solved.md)
 
 ### 03. Instructor Do: Metasploit Framework and msfvenom
 
@@ -140,3 +141,6 @@ We will explore the capabilities of the Meterpreter shell later in the course.
 
 In this activity, students will follow in the instructor's footpath and use Metasploit and MSFvenom to open a shell on their Windows VM.
 
+[Student Do Activity Link](02-Metasploit.md)
+
+[Student Do Solved Link](02-Metasploit-Solved.md)
