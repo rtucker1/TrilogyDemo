@@ -102,7 +102,7 @@ Explain to students that in order for the payload/agent we're going to craft to 
 
 5. After the LHOST (listener host) is set, set the LPORT by typing `set LPORT 4444`
 
-![](/Images/01.Metasploitoptions.png)
+![](/Images/01.Metasploitoptions.PNG)
 
 6. Once LPORT and LHOST is set, start the listener by typing `run -j`. The `-j` option sets it to run in background.
 
