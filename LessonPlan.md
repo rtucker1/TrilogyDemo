@@ -67,7 +67,9 @@ The C2 framework we will be using for this class is Metasploit. Metasploit is bo
 
 ### 02. Student Do: Command and Control Framework research
 
-In this activity, students will research various C2 frameworks and document similiarities and differences between them
+In this activity, students will research various C2 frameworks and document similiarities and differences between them. 
+
+[Student Do Activity Link](01-C2Research.md)
 
 Share the following link with students: https://www.thec2matrix.com/matrix
 
