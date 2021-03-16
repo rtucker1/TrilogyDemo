@@ -1,35 +1,53 @@
 ## Activity File: C2 Research
 
-In this activity you will research various C2 frameworks using the [C2 Matrix](https://www.thec2matrix.com/matrix)
+In this activity you will research various C2 frameworks using the [C2 Matrix](https://www.thec2matrix.com/matrix) in order to determine which frameworks may suit your engagement best.
+
+### Scenario
+
+You have hired as a penetration tester at a consulting agency and have been assigned to an upcoming assignment. As part of this assignment, you have been tasked with coming up with a primary, secondary, and tertiary C2 framework to use in an upcoming engagement. 
+
+The client has shared a few important details for your consideration:
+
+- Their network is mostly Windows machines, with some Linux machines scattered throughout.
+
+- Their firewall rules only allow ports 80,443 TCP and port 53 UDP outbound.
+
+As part of your company's policies, there's a few additional requirements:
+
+- The C2 framework must support logging
+
+- It must support multiple users
+
+- The framework must have a full version released, i.e. the version must be 1.0 or higher. No "beta" or "PoC" versions allowed.
+
+
+Note: It's OK to have your primary C2 not support all operating systems, as long as the secondary or tertiary supports them.
 
 ### Instructions 
 
-Using the help of the C2 matrix, research three different C2 frameworks and compare them. Answer the following questions for each framework:
+Using the help of the C2 matrix and Google, find three different C2 frameworks that fit your operational needs. For each framework you've identified as a good candidate, answer the following questions
 
 1. What is the name of the C2 framework?
 
-Cobalt Strike
+- Cobalt Strike
 
 2. What operating systems do its agents support?
 
-Windows
+- Windows
 
 3. What channels can the agents communicate over?
 
-SMB, DNS, HTTP/S, TCP
+- HTTP/S, DNS, TCP, SMB
 
 4. What language is it written in?
 
-Java
+- Java
 
-5. Is it open source or closed?
+5. Is it open or closed source?
 
-Closed
+- Closed
 
-6. Does it have a support website or Github? 
+6. Does the developer have a Slack or Twitter link for potential support questions?
 
-https://www.cobaltstrike.com/
+- No 
 
-6. Does it support any additional capabilities?
-
-Dashboard, Actively maintained, multi user support
