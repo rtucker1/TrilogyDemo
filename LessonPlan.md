@@ -40,9 +40,9 @@ Explain to students that we will discuss two things: C2 Architecture and C2 fram
 
 
 
-In order to compromise a machine, the C2 agent needs to be run on it.
+In order to compromise a machine, the C2 agent needs to be running on it.
 
-- C2 agent is the malicious payload that is run on the target machine and ultimately is what is used to communicate back to the C2 server. Most C2 frameworks have an option to generate an agent. 
+- C2 agent is the malicious payload that is run on the target machine and ultimately is what is used to communicate back to the C2 server. Most C2 frameworks have an option to generate an agent. Note that the agent typically runs as a process and needs to be continously running in order for communication to flow consistently between it and the C2 server.
 
 Once the machine has the C2's agent running on it, it is now compromised and sometimes referred to as a "zombie". Multiple zombies form a "botnet". These compromised machines are then controlled through that single C2 server.
 
