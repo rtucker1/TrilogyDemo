@@ -38,19 +38,24 @@ Explain to students that we will discuss two things: C2 Architecture and C2 fram
 
 - A C2 framework is the actual program that controls the agents on the compromised machine. There are various types of C2 frameworks that we will learn about, but for this class our C2 framework will be Metasploit.
 
-
-
 In order to compromise a machine, the C2 agent needs to be running on it.
 
 - C2 agent is the malicious payload that is run on the target machine and ultimately is what is used to communicate back to the C2 server. Most C2 frameworks have an option to generate an agent. Note that the agent typically runs as a process and needs to be continously running in order for communication to flow consistently between it and the C2 server.
 
-Once the machine has the C2's agent running on it, it is now compromised and sometimes referred to as a "zombie". Multiple zombies form a "botnet". These compromised machines are then controlled through that single C2 server.
+Once the machine has the C2's agent running on it, it is now compromised and sometimes referred to as a "zombie".
+![](Images/BasicC2.PNG)
+
+ Multiple zombies form a "botnet". These compromised machines are then controlled through that single C2 server.
+
+![](Images/C2Net.PNG)
 
 Note: C2 architecture has evolved signficiantly over the past decade so that the true C2 server is concealed through various methods, instead of a direct Server -> Host architecture. For this class, we will focus on the direct architecture.
 
+
+
 - Most C2 frameworks support multiple different ways of how the agent communicates back with the server, also known as "channels".
 
-A compromised host can communicate using either a single channel or several channels over various protocols. Some of these protocols include
+A compromised host can communicate using either a single channel or several channels over various protocols. Some of these protocols include:
 
 - DNS
 - HTTP
@@ -75,11 +80,11 @@ The C2 framework we will be using for this class is Metasploit. Metasploit is bo
 
 - We will cover the capabilities of the 'Meterpreter' shell later in the course.
 
-Explain to students that while we will only be using Metasploit in this class, most C2 frameworks are opensource which allow you to use them freely. It's considered good practice to have multiple C2 frameworks available for a penetration test or red team engagement.
+Explain to students that while we will only be using Metasploit in this class, most C2 frameworks are open source which allow you to use them freely. It's considered good practice to have multiple C2 frameworks available for a penetration test or red team engagement.
 
 - C2 Frameworks each have their own "fingerprints" or "indicators of compromise"
 
-- For example, Metasploit's payload & agent generator, msfvenom, will generate a payload in a specified format (e.g. .Exe). These payloads have well known signatures that Antivirus products will alert on and kill the payload. 
+- For example, Metasploit's payload & agent generator, `msfvenom`, will generate a payload in a specified format (e.g. .Exe). These payloads have well known signatures that Antivirus products will alert on and kill the payload. 
 
 - In an event where a certain AV product is killing the payload, it would be a good idea to switch C2 frameworks.
 
