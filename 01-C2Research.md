@@ -16,7 +16,9 @@ As part of your company's policies, there's a few additional requirements:
 
 - The C2 framework must support logging
 
-- In order to avoid cmdline issues, they'd like to use a C2 framework with a GUI or web interface.
+- It must support multiple users
+
+- The framework must have a full version released, i.e. the version must be 1.0 or higher. No "beta" or "PoC" versions allowed.
 
 
 ### Instructions 
