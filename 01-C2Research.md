@@ -21,6 +21,9 @@ As part of your company's policies, there's a few additional requirements:
 - The framework must have a full version released, i.e. the version must be 1.0 or higher. No "beta" or "PoC" versions allowed.
 
 
+Note: It's OK to have your primary C2 not support all operating systems, as long as the secondary or tertiary supports them.
+
+
 ### Instructions 
 
 Using the help of the C2 matrix and Google, find three different C2 frameworks that fit your operational needs. For each framework you've identified as a good candidate, answer the following questions
